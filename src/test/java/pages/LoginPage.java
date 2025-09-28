@@ -57,4 +57,11 @@ public class LoginPage {
         // Si hiciste switch a un iframe y necesitas volver al main content:
         // driver.switchTo().defaultContent();
     }
+    // Selector para el mensaje de error
+    private By errorMessage = By.cssSelector("p.oxd-alert-content-text");
+
+    // Metodo que devuelve el texto del error
+    public String getErrorMessage() {
+        return driver.findElement(errorMessage).getText();
+    }
 }

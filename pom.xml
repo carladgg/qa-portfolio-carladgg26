@@ -1,4 +1,3 @@
-//Archivo de Maven que describe tu proyecto y sus dependencias.
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
@@ -8,7 +7,7 @@
     <groupId>com.carladgg</groupId>
     <artifactId>selenium-orangehrm-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
-//Variables para usar versiones consistentes en dependencias.
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -17,7 +16,7 @@
         <testng.version>7.9.0</testng.version>
         <webdrivermanager.version>5.9.2</webdrivermanager.version>
     </properties>
-//Aquí se listan todas las dependencias que tu proyecto necesita para compilar y ejecutar tests.
+
     <dependencies>
         <!-- Selenium Java -->
         <dependency>
@@ -55,7 +54,7 @@
             <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
-//Plugin que permite ejecutar tests de TestNG con Maven.
+
     <build>
         <plugins>
             <!-- Maven Surefire Plugin para ejecutar TestNG -->
