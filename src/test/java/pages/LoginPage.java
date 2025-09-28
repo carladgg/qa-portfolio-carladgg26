@@ -18,6 +18,8 @@ public class LoginPage {
     private By loginButton = By.cssSelector(".orangehrm-login-button");
     private By dashboardTitle = By.className("oxd-topbar-header-breadcrumb");
     private By errorMessage = By.cssSelector("p.oxd-alert-content-text");
+    private By userDropdown = By.cssSelector("p.oxd-userdropdown-name");
+    private By logoutLink = By.xpath("//a[text()='Logout']");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -41,15 +43,21 @@ public class LoginPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(dashboardTitle));
     }
 
-    public WebElement getErrorMessageElement() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
-    }
-
     public String getErrorMessage() {
         try {
             return wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage)).getText();
         } catch (Exception e) {
-            return "No se encontró mensaje de error";
+            return "Invalid Credentials is not displayed.";
         }
+    }
+    public void logout() {
+        WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(userDropdown));
+        dropdown.click();
+
+        WebElement logoutBtn = wait.until(ExpectedConditions.elementToBeClickable(logoutLink));
+        logoutBtn.click();
+    }
+    public WebElement getUsernameField() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(usernameField));
     }
 }

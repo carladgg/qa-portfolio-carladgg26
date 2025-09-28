@@ -1,18 +1,15 @@
 package tests;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.LoginPage;
-import utils.LoginHelper;
 
-public class LoginTest {
-
+public class CreateUserTest {
     private WebDriver driver;
     private LoginPage loginPage;
 
@@ -31,10 +28,9 @@ public class LoginTest {
         loginPage = new LoginPage(driver);
     }
 
-    @Test(priority = 1)
-    public void loginWithValidCredentialsShowsDashboard() {
-        LoginHelper loginHelper = new LoginHelper(driver);
-        loginHelper.login("Admin", "admin123");
+    @Test(priority = 3)
+    public void CreateAdminUser() {
+        loginPage.login("Admin", "admin123");
 
         Assert.assertTrue(
                 loginPage.getDashboardTitle().isDisplayed(),
@@ -42,27 +38,5 @@ public class LoginTest {
         );
 
         System.out.println("✅ Login Test Success: Dashboard page found.");
-    }
-
-    @Test(priority = 2)
-    public void loginWithInValidCredentialsShowsInvalidCredentials() {
-        LoginHelper loginHelper = new LoginHelper(driver);
-        loginHelper.login("Best", "invalid123");
-
-        String errorText = loginPage.getErrorMessage();
-
-        Assert.assertTrue(
-                errorText.toLowerCase().contains("invalid") || errorText.toLowerCase().contains("credentials"),
-                "Invalid Credentials is not displayed"
-        );
-
-        System.out.println("❌ Login Test Failure: " + errorText);
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
 }

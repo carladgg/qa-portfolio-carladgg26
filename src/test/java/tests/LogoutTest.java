@@ -11,10 +11,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import pages.LoginPage;
 import utils.LoginHelper;
 
-public class LoginTest {
+public class LogoutTest {
 
     private WebDriver driver;
     private LoginPage loginPage;
+    private LoginHelper loginHelper;
 
     @BeforeMethod
     public void setUp() {
@@ -29,34 +30,24 @@ public class LoginTest {
 
         driver.get("https://opensource-demo.orangehrmlive.com/");
         loginPage = new LoginPage(driver);
+        loginHelper = new LoginHelper(driver);
     }
 
     @Test(priority = 1)
-    public void loginWithValidCredentialsShowsDashboard() {
-        LoginHelper loginHelper = new LoginHelper(driver);
+    public void logoutAfterSuccessfulLogin() {
+
         loginHelper.login("Admin", "admin123");
+        Assert.assertTrue(loginPage.getDashboardTitle().isDisplayed(), "Dashboard not found");
 
+
+        loginHelper.logout();
         Assert.assertTrue(
-                loginPage.getDashboardTitle().isDisplayed(),
-                "Dashboard page not found"
+                loginPage.getUsernameField().isDisplayed() ||
+                        driver.getCurrentUrl().contains("login"),
+                "Login page not found"
         );
 
-        System.out.println("✅ Login Test Success: Dashboard page found.");
-    }
-
-    @Test(priority = 2)
-    public void loginWithInValidCredentialsShowsInvalidCredentials() {
-        LoginHelper loginHelper = new LoginHelper(driver);
-        loginHelper.login("Best", "invalid123");
-
-        String errorText = loginPage.getErrorMessage();
-
-        Assert.assertTrue(
-                errorText.toLowerCase().contains("invalid") || errorText.toLowerCase().contains("credentials"),
-                "Invalid Credentials is not displayed"
-        );
-
-        System.out.println("❌ Login Test Failure: " + errorText);
+        System.out.println("✅ Logout Test Success: Login page found");
     }
 
     @AfterMethod
@@ -66,3 +57,4 @@ public class LoginTest {
         }
     }
 }
+
