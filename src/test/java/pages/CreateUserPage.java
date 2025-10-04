@@ -10,4 +10,20 @@ import java.time.Duration;
 
 
 public class CreateUserPage {
+    private WebDriver driver;
+    private WebDriverWait wait;
+
+    private final By userMenu = By.cssSelector(".oxd-brand");
+    private final By adminOption = By.xpath("//li[1]//a[1]//span[1]");
+
+    public CreateUserPage(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    }
+    public void goToAdminUserManagement() {
+        WebElement adminOptionBtn = wait.until(ExpectedConditions.elementToBeClickable(adminOption));
+        adminOptionBtn.click();
+
+    }
+
 }
