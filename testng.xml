@@ -13,5 +13,8 @@
             <class name="tests.CreateUserTest"/>
         </classes>
     </test>
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
 </suite>
 

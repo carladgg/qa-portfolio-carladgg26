@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -16,14 +17,14 @@ public class LoginPage {
     private By usernameField = By.name("username");
     private By passwordField = By.name("password");
     private By loginButton = By.cssSelector(".orangehrm-login-button");
-    private By dashboardTitle = By.className("oxd-topbar-header-breadcrumb");
+    private By dashboardTitle = By.xpath("//h6[normalize-space()='Dashboard']");
     private By errorMessage = By.cssSelector("p.oxd-alert-content-text");
     private By userDropdown = By.cssSelector("p.oxd-userdropdown-name");
     private By logoutLink = By.xpath("//a[text()='Logout']");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void login(String username, String password) {
@@ -45,9 +46,11 @@ public class LoginPage {
 
     public String getErrorMessage() {
         try {
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage)).getText();
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
+            return element.getText();
         } catch (Exception e) {
-            return "Invalid Credentials is not displayed.";
+            Assert.fail("Invalid Credentials is not displayed.");
+            return null;
         }
     }
     public void logout() {

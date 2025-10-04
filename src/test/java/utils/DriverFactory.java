@@ -1,29 +1,41 @@
-//Paquete de utilidades para manejar drivers de Selenium.
 package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-//Clase para controlar una única instancia de WebDriver (singleton).
+
 public class DriverFactory {
 
     private static WebDriver driver;
 
-    //Si no hay driver inicializado, se crea uno nuevo.
-    //Siempre devuelve la misma instancia para todo el proyecto.
     public static WebDriver getDriver() {
         if (driver == null) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
             options.setExperimentalOption("excludeSwitches", new String[]{"enable-logging"});
 
+            // Lee el flag headless desde Maven/IntelliJ
+            String headless = System.getProperty("headless", "false");
+            if (headless.equalsIgnoreCase("true")) {
+                options.addArguments("--headless=new");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("window-size=1920,1080");
+                System.out.println(">>> Running in HEADLESS mode <<<");
+            }
+            else {
+                System.out.println(">>> Running with UI <<<");
+            }
+
             driver = new ChromeDriver(options);
-            driver.manage().window().maximize();
+            if (!headless.equalsIgnoreCase("true")) {
+                driver.manage().window().maximize();
+            }
         }
         return driver;
     }
 
-    //Metodo para cerrar y limpiar el driver.
     public static void quitDriver() {
         if (driver != null) {
             driver.quit();

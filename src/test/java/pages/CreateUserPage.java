@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -18,12 +19,15 @@ public class CreateUserPage {
 
     public CreateUserPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
     public void goToAdminUserManagement() {
+        try {
         WebElement adminOptionBtn = wait.until(ExpectedConditions.elementToBeClickable(adminOption));
         adminOptionBtn.click();
-
+        } catch (Exception e) {
+            Assert.fail("Admin menu option not found.");
+        }
     }
 
 }
