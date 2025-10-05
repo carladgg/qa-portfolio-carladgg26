@@ -28,4 +28,7 @@ public class BaseTest {
     public void tearDown() {
         DriverFactory.quitDriver();
     }
+    public WebDriver getDriver() {
+        return driver;
+    }
 }

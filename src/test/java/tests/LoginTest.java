@@ -1,11 +1,12 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
+import listeners.TestListener;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.LoginPage;
 import utils.LoginHelper;
 
+@Listeners(TestListener.class)
 public class LoginTest extends BaseTest {
     @Test(priority = 1)
     public void loginWithValidCredentialsShowsDashboard() {
@@ -14,10 +15,10 @@ public class LoginTest extends BaseTest {
 
         Assert.assertTrue(
                 loginPage.getDashboardTitle().isDisplayed(),
-                "Dashboard page not found"
+                "❌Dashboard page not found"
         );
 
-        System.out.println("Login Test Success: Dashboard page found.");
+        System.out.println("✅Login Test Valid Credentials: Dashboard page found.");
     }
 
     @Test(priority = 2)
@@ -28,10 +29,10 @@ public class LoginTest extends BaseTest {
 
         Assert.assertTrue(
                 errorText.toLowerCase().contains("invalid") || errorText.toLowerCase().contains("credentials"),
-                "Invalid Credentials is not displayed"
+                "❌Invalid Credentials is not displayed"
         );
 
-        System.out.println("Login Test Failure: " + errorText);
+        System.out.println("✅Login Test Invalid Credentials: " + errorText);
     }
 }
 

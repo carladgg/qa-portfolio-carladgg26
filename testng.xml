@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="OrangeHRM Suite" verbose="1">
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
     <test name="OrangeHRM Tests">
         <classes>
             <!-- 1st Priority Login Test Cases -->
@@ -13,8 +16,5 @@
             <class name="tests.CreateUserTest"/>
         </classes>
     </test>
-    <listeners>
-        <listener class-name="listeners.TestListener"/>
-    </listeners>
 </suite>
 

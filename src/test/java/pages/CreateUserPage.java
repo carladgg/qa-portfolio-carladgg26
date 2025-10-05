@@ -26,7 +26,7 @@ public class CreateUserPage {
         WebElement adminOptionBtn = wait.until(ExpectedConditions.elementToBeClickable(adminOption));
         adminOptionBtn.click();
         } catch (Exception e) {
-            Assert.fail("Admin menu option not found.");
+            Assert.fail("❌Admin menu option not found.");
         }
     }
 

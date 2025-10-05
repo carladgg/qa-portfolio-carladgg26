@@ -49,7 +49,7 @@ public class LoginPage {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
             return element.getText();
         } catch (Exception e) {
-            Assert.fail("Invalid Credentials is not displayed.");
+            Assert.fail("❌Invalid Credentials is not displayed.");
             return null;
         }
     }

@@ -1,27 +1,27 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
+import listeners.TestListener;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.LoginPage;
-import utils.LoginHelper;
 
+@Listeners(TestListener.class)
 public class LogoutTest extends BaseTest {
     @Test(priority = 1)
     public void logoutAfterSuccessfulLogin() {
 
         loginHelper.login("Admin", "admin123");
-        Assert.assertTrue(loginPage.getDashboardTitle().isDisplayed(), "Dashboard not found");
+        Assert.assertTrue(loginPage.getDashboardTitle().isDisplayed(), "❌Dashboard not found");
 
 
         loginHelper.logout();
         Assert.assertTrue(
                 loginPage.getUsernameField().isDisplayed() ||
                         driver.getCurrentUrl().contains("login"),
-                "Login page not found"
+                "❌Login page not found"
         );
 
-        System.out.println("Logout Test Success: Login page found");
+        System.out.println("✅Logout Test Success: Login page found");
     }
 }
 
