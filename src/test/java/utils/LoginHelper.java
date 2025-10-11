@@ -16,6 +16,9 @@ public class LoginHelper {
     public void login(String username, String password) {
         loginPage.login(username, password);
     }
+    public void loginAttempt(String username, String password) {
+        loginPage.loginAttempt(username, password);
+    }
 
     public void logout() {
         loginPage.logout();
