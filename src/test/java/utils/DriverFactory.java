@@ -13,6 +13,7 @@ public class DriverFactory {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
             options.setExperimentalOption("excludeSwitches", new String[]{"enable-logging"});
+            options.addArguments("--lang=es");
 
             // Lee el flag headless desde Maven/IntelliJ
             String headless = System.getProperty("headless", "false");
@@ -32,6 +33,7 @@ public class DriverFactory {
             if (!headless.equalsIgnoreCase("true")) {
                 driver.manage().window().maximize();
             }
+
         }
         return driver;
     }

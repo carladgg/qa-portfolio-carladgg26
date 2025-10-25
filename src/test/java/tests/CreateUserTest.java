@@ -20,6 +20,8 @@ public class CreateUserTest extends BaseTest {
         createUserPage.goToAddNewUser();
         System.out.println("✅[STEP 3] Navigated to Admin > User Management > Add User section successfully.");
 
+        createUserPage.createNewAdminUser();
+        System.out.println("✅[STEP 4] Admin new user was created successfully.");
     }
     /*@Test(priority = 2)
     public void testFallaIntencional() {
