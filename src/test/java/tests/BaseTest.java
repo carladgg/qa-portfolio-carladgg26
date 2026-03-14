@@ -18,7 +18,8 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-
+        System.setOut(new java.io.PrintStream(System.out, true, java.nio.charset.StandardCharsets.UTF_8));
+        System.setErr(new java.io.PrintStream(System.err, true, java.nio.charset.StandardCharsets.UTF_8));
         driver = DriverFactory.getDriver();
         driver.get("https://opensource-demo.orangehrmlive.com/");
         loginPage = new LoginPage(driver);

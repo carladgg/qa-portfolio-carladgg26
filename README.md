@@ -48,6 +48,7 @@ git clone https://github.com/carladgg/qa-portfolio-carladgg26.git
 # Run all tests
 mvn test
 mvn clean test -Dheadless=true
+mvn clean test -Dheadless=false
 
 # Run specific test
 mvn -Dtest=LoginTest#loginWithValidCredentialsShowsDashboard test
