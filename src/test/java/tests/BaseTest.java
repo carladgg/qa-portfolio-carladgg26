@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.CreateUserPage;
+import pages.EmployeePage;
 import utils.DriverFactory;
 import pages.LoginPage;
 import utils.LoginHelper;
@@ -15,6 +16,7 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected LoginHelper loginHelper;
     protected CreateUserPage createUserPage;
+    protected EmployeePage employeePage;
 
     @BeforeMethod
     public void setUp() {
@@ -25,6 +27,7 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         loginHelper = new LoginHelper(driver);
         createUserPage = new CreateUserPage(driver);
+        employeePage = new EmployeePage(driver);
     }
 
     @AfterMethod

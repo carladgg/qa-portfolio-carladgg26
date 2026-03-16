@@ -12,8 +12,17 @@
             <!-- 2nd Priority Logout Test Cases -->
             <class name="tests.LogoutTest"/>
 
-            <!-- 3rd  Priority CreateUser Test Cases -->
+            <!-- 3rd Priority CreateEmployee Test Cases -->
+            <class name="tests.CreateEmployeeTest"/>
+
+            <!-- 4th Priority CreateUser Test Cases -->
             <class name="tests.CreateUserTest"/>
+
+            <!-- 5th Priority DeleteUser Test Cases -->
+            <class name="tests.DeleteUserTest"/>
+
+            <!-- 6th Priority DeleteEmployee Test Cases -->
+            <class name="tests.DeleteEmployeeTest"/>
         </classes>
     </test>
 </suite>

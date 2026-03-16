@@ -18,6 +18,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <argLine>-Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8</argLine>
+        <headless>false</headless>
     </properties>
 
     <dependencies>
@@ -69,6 +70,7 @@
                         <argLine>-Dfile.encoding=UTF-8</argLine>
                         <systemPropertyVariables>
                             <file.encoding>UTF-8</file.encoding>
+                            <headless>${headless}</headless>
                         </systemPropertyVariables>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>

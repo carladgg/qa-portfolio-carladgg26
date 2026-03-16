@@ -21,24 +21,35 @@ This portfolio showcases my automation testing projects as I transition from Sen
 
 ## 📁 Projects
 
-### 1. 🟠 OrangeHRM — Login & User Management Automation
-**Status:** ✅ Complete  
+### 1. 🟠 OrangeHRM — Login, Employee & User Management Automation
+**Status:** 🔄 In Progress — Employee Details module coming next
 **Stack:** Java · Selenium WebDriver · TestNG · Page Object Model
 
-Automated test suite for OrangeHRM demo application covering authentication flows and user management.
+Automated test suite for OrangeHRM demo application covering authentication flows, employee creation/deletion, and user management. Tests run both headless and with UI via Maven flag.
 
-**Test Coverage:**
+**Test Coverage (7 test cases — all passing ✅):**
 - ✅ Valid login with correct credentials
 - ✅ Invalid login — wrong password
 - ✅ Invalid login — wrong username
 - ✅ Logout flow
-- ✅ Create new user via Admin panel
+- ✅ Create employee (PIM module)
+- ✅ Create Admin user linked to that employee
+- ✅ Delete user (Admin panel)
+- ✅ Delete employee (PIM module)
+- 🔄 Employee Details — *coming next*
+
+**Execution Order (dependency-aware):**
+1. Login tests → 2. Logout → 3. Create Employee → 4. Create User → 5. Delete User → 6. Delete Employee
 
 **Key Patterns Used:**
 - Page Object Model (POM) for maintainability
-- TestNG for test execution and assertions
-- Screenshot capture on test failure
-- Maven for dependency management
+- TestNG for test execution, ordering, and assertions
+- Screenshot capture on test failure (TestListener)
+- Employee ID override with `currentTimeMillis` to avoid conflicts on the shared public demo site (auto-generated IDs collide with other users)
+- Race-condition-safe XPath (row-scoped selectors) for search result tables
+- Vue.js autocomplete handling (type-for-hints + suggestion click + attribute wait)
+- Headless / UI mode toggle via Maven system property
+- Maven Surefire Plugin for suite execution
 
 **How to Run:**
 ```bash
@@ -79,11 +90,25 @@ mvn -Dtest=LoginTest#loginWithValidCredentialsShowsDashboard test
 
 ---
 
+## 🤝 Built with AI Collaboration
+
+This project was developed in pair-programming style with **Claude Code** (Anthropic), an AI coding assistant used directly in the terminal.
+
+Working alongside Claude Code, I was able to:
+- Diagnose tricky Selenium timing issues and race conditions
+- Debug Vue.js autocomplete binding behavior
+- Identify XPath selector failures from test screenshots
+- Iterate quickly on Page Object design
+
+> *"Same team, different nature."* — Carla + Claude Code
+
+---
+
 ## 📜 Certifications
 
-- 🎓 Claude 101 — Anthropic Academy *(March 2026)*
-- 🎓 AI Fluency: Framework & Foundations — Anthropic *(Coming soon)*
-- 🎓 Selenium WebDriver with Java — Udemy *(Coming soon)*
+- ✅ Claude 101 — Anthropic Academy *(March 2026)*
+- 🔄 AI Fluency: Framework & Foundations — Anthropic *(In Progress)*
+- 📅 Selenium WebDriver with Java — Udemy *(Planned)*
 
 ---
 
